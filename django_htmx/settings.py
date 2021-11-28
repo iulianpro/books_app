@@ -72,12 +72,23 @@ WSGI_APPLICATION = 'django_htmx.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'USE_DEBUG' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ipdeveu_books_test',
+            'USER': 'ipdeveu_books_test',
+            'PASSWORD': 'U.fDiB{Q&68.OA4^',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        }
+    }
 
 
 # Password validation

@@ -21,7 +21,7 @@ else:
 if 'DEVELOPMENT_MOD' in os.environ:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['176.58.97.71']
+    ALLOWED_HOSTS = ['176.58.97.71', 'subdomain.ipdev.eu', 'www.subdomain.ipdev.eu']
 
 
 # Application definition
@@ -72,7 +72,8 @@ WSGI_APPLICATION = 'django_htmx.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if 'USE_DEBUG' in os.environ:
+if 'DEVELOPMENT_MOD' in os.environ:
+    print('Run localhost database')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -85,8 +86,9 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'ipdeveu_books_test',
             'USER': 'ipdeveu_books_test',
-            'PASSWORD': 'U.fDiB{Q&68.OA4^',
+            'PASSWORD': '',
             'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
         }
     }
 
@@ -129,6 +131,9 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+
+if not 'DEVELOPMENT_MOD' in os.environ:
+    STATIC_ROOT = '/home/ipdeveu/subdomain.ipdev.eu/static/'
 
 
 # Default primary key field type

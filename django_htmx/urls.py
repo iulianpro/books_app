@@ -14,7 +14,7 @@ from books.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="home.html"), name='create-book'),
-    path('<pk>/', create_book, name='create-book'),
+    path('<int:pk>/', create_book, name='create-book'),
     path('htmx/book/<pk>/', detail_book, name="detail-book"),
     path('htmx/book/<pk>/update/', update_book, name="update-book"),
     path('htmx/book/<pk>/delete/', delete_book, name="delete-book"),

@@ -21,7 +21,7 @@ else:
 if 'DEVELOPMENT_MOD' in os.environ:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
-    ALLOWED_HOSTS = ['www.ipdev.eu', 'ipdev.eu']
+    ALLOWED_HOSTS = ['www.books.ipdev.eu', 'books.ipdev.eu']
 
 
 # Application definition
